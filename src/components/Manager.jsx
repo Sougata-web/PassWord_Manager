@@ -4,7 +4,7 @@ import { useRef } from 'react';
 function Manager() {
     const ref=useRef()
     const showPassword= ()=>{
-        if(  ref.current.src==="/icons/eyecross.png" ){
+        if(  ref.current.src.includes("/icons/eyecross.png") ){
             ref.current.src="/icons/eye.png";
         }else{
             ref.current.src="/icons/eyecross.png";
@@ -12,8 +12,8 @@ function Manager() {
     }
   return (
         <>
-        {/* <div class="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div> */}
-        <div class="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#3dd_100%)]"></div> 
+        
+        <div classNmae="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#3dd_100%)]"></div> 
 
         <div className="  mycontainer">
             <h1 className=' text-4xl text font-bold text-center'>

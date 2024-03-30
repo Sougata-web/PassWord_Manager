@@ -68,32 +68,25 @@ function Manager() {
                     <h2 className=' font-bold text-xl py-4'>
                         Your Passwords
                     </h2>
-                    <table className="table-auto w-full rounded-md overflow-hidden">
+                    {passwordArray.length === 0 && <div> No Passwords To show</div>}
+                    {passwordArray.length != 0 &&<table className="table-auto w-full rounded-md overflow-hidden">
                         <thead className='  bg-green-800 text-white'>
                             <tr>
-                                <th className=' py-1'>Song</th>
-                                <th className=' py-1'>Artist</th>
-                                <th className=' py-1'>Year</th>
+                                <th className=' py-1'>Site</th>
+                                <th className=' py-1'>Username</th>
+                                <th className=' py-1'>Passwords</th>
                             </tr>
                         </thead>
                         <tbody className=' bg-green-100'>
-                            <tr>
-                                <td className='border border-white py-1 text-center w-32'>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                                <td className='border border-white py-1 text-center w-32'>Malcolm Lockyer</td>
-                                <td className='border border-white py-1 text-center w-32'>1961</td>
+                            {passwordArray.map((item,index)=>{
+                                return <tr key={index}>
+                                <td className='border border-white py-1 text-center w-32'><a href="{item.site}" target="_blank"> {item.site} </a> </td>
+                                <td className='border border-white py-1 text-center w-32'>{item.username}</td>
+                                <td className='border border-white py-1 text-center w-32'>{item.password}</td>
                             </tr>
-                            <tr>
-                                <td className='border border-white py-1 text-center w-32'>Witchy Woman</td>
-                                <td className='border border-white py-1 text-center w-32'>The Eagles</td>
-                                <td className='border border-white py-1 text-center w-32'>1972</td>
-                            </tr>
-                            <tr>
-                                <td className='border border-white py-1 text-center w-32'>Shining Star</td>
-                                <td className='border border-white py-1 text-center w-32'>Earth, Wind, and Fire</td>
-                                <td className='border border-white py-1 text-center w-32'>1975</td>
-                            </tr>
+                            })}
                         </tbody>
-                    </table>
+                    </table>}
                 </div>
             </div>
 

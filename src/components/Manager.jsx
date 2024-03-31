@@ -30,7 +30,7 @@ function Manager() {
             draggable: true,
             progress: undefined,
             theme: "light",
-            // transition: "Bounce",
+            
             });
         navigator.clipboard.writeText(text)
     }

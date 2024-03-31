@@ -1,5 +1,8 @@
 import React from 'react'
 import { useRef, useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function Manager() {
 
@@ -17,15 +20,30 @@ function Manager() {
         }
     }, [])
 
+    const copyText = (text) => {
+        toast('Copied To Clipboard', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            // transition: "Bounce",
+            });
+        navigator.clipboard.writeText(text)
+    }
+
     const showPassword = () => {
-        passwordRef.current.type="text"
+        passwordRef.current.type = "text"
         if (ref.current.src.includes("/icons/eyecross.png")) {
             ref.current.src = "/icons/eye.png";
-            passwordRef.current.type="password"  
-            
+            passwordRef.current.type = "password"
+
         } else {
             ref.current.src = "/icons/eyecross.png";
-            passwordRef.current.type="text"
+            passwordRef.current.type = "text"
 
         }
     }
@@ -39,6 +57,20 @@ function Manager() {
     }
     return (
         <>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition= "Bounce" />
+            {/* Same as */}
+            <ToastContainer />
 
             <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#3dd_100%)]"></div>
 
@@ -75,7 +107,7 @@ function Manager() {
                         Your Passwords
                     </h2>
                     {passwordArray.length === 0 && <div> No Passwords To show</div>}
-                    {passwordArray.length != 0 &&<table className="table-auto w-full rounded-md overflow-hidden">
+                    {passwordArray.length != 0 && <table className="table-auto w-full rounded-md overflow-hidden">
                         <thead className='  bg-green-800 text-white'>
                             <tr>
                                 <th className=' py-1'>Site</th>
@@ -84,15 +116,37 @@ function Manager() {
                             </tr>
                         </thead>
                         <tbody className=' bg-green-100'>
-                            {passwordArray.map((item,index)=>{
+                            {passwordArray.map((item, index) => {
                                 return <tr key={index}>
-                                <td className='border border-white py-1 text-center w-32'><a href="{item.site}" target="_blank"> {item.site} </a> 
-                                <img className='' src="/icons/copy.png" alt="" trigger="hover" />
-                                
-                                </td>
-                                <td className='border border-white py-1 text-center w-32'>{item.username}</td>
-                                <td className='border border-white py-1 text-center w-32'>{item.password}</td>
-                            </tr>
+                                    <td className='gap-2 border border-white py-1 text-center '>
+                                        <div className=' flex items-center justify-center '>
+                                            <a href="{item.site}" target="_blank"> {item.site} </a>
+                                            <div className='lordIconCopy size-7' onClick={() => { copyText(item.site) }}>
+
+                                                <img className=' cursor-pointer' src="/icons/copy.png" alt="" trigger="hover" />
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td className='border justify-center border-white py-1 text-center '>
+                                        <div className=' flex items-center justify-center '>
+                                            <span>{item.username}</span>
+                                            <div className='lordIconCopy size-7' onClick={() => { copyText(item.username) }}>
+
+                                                <img className=' cursor-pointer' src="/icons/copy.png" alt="" trigger="hover" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className='border justify-center border-white py-1 text-center '>
+                                        <div className=' flex items-center justify-center '>
+                                            <span>{item.password}</span>
+                                            <div className='lordIconCopy size-7' onClick={() => { copyText(item.password) }} >
+
+                                                <img className=' cursor-pointer' src="/icons/copy.png" alt="" trigger="hover" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                             })}
                         </tbody>
                     </table>}

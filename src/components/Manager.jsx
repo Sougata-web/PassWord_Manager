@@ -99,7 +99,7 @@ function Manager() {
                             src="https://cdn.lordicon.com/jgnvfzqg.json"
                             trigger="hover">
                         </lord-icon>
-                        Add Password</button>
+                        Save </button>
                 </div>
 
                 <div className="passwords">
@@ -113,6 +113,7 @@ function Manager() {
                                 <th className=' py-1'>Site</th>
                                 <th className=' py-1'>Username</th>
                                 <th className=' py-1'>Passwords</th>
+                                <th className=' py-1'>Actions</th>
                             </tr>
                         </thead>
                         <tbody className=' bg-green-100'>
@@ -123,7 +124,7 @@ function Manager() {
                                             <a href="{item.site}" target="_blank"> {item.site} </a>
                                             <div className='lordIconCopy size-7' onClick={() => { copyText(item.site) }}>
 
-                                                <img className=' cursor-pointer' src="/icons/copy.png" alt="" trigger="hover" />
+                                                <img className=' cursor-pointer' src="/icons/copy.gif" alt="" trigger="hover" />
                                             </div>
                                         </div>
 
@@ -133,7 +134,7 @@ function Manager() {
                                             <span>{item.username}</span>
                                             <div className='lordIconCopy size-7' onClick={() => { copyText(item.username) }}>
 
-                                                <img className=' cursor-pointer' src="/icons/copy.png" alt="" trigger="hover" />
+                                                <img className=' cursor-pointer' src="/icons/copy.gif" alt="" trigger="hover" />
                                             </div>
                                         </div>
                                     </td>
@@ -142,8 +143,17 @@ function Manager() {
                                             <span>{item.password}</span>
                                             <div className='lordIconCopy size-7' onClick={() => { copyText(item.password) }} >
 
-                                                <img className=' cursor-pointer' src="/icons/copy.png" alt="" trigger="hover" />
+                                                <img className=' cursor-pointer' src="/icons/copy.gif" alt="" trigger="hover" />
                                             </div>
+                                        </div>
+                                    </td>
+                                    <td className='border justify-center border-white py-1 text-center '>
+                                        <div className=' flex items-center justify-center gap-2 '>
+                                            <span>
+                                                <img className=' w-8 cursor-pointer' src="/icons/trash-bin.gif" alt="" />
+                                            </span>
+                                               <span> <img className=' w-8 cursor-pointer ' src="/icons/edit.gif" alt="" />
+                                               </span>
                                         </div>
                                     </td>
                                 </tr>

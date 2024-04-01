@@ -17,7 +17,7 @@ function Nvabar() {
           </li> */}
 
         </ul>
-        <button className=' text-white bg-green-800 my-4 rounded-full flex gap-4 justify-between items-center'>
+        <button className=' text-white bg-green-800 my-4 rounded-full flex gap-4 justify-between items-center ring-1 ring-white'>
           <img className=" invert w-10 p-1 " src="/icons/github.svg" alt="" />
           <span className=' font-bold p-1'>GitHub</span>
         </button>

@@ -22,7 +22,7 @@ function Manager() {
     }, [])
 
     const copyText = (text) => {
-        toast('Copied To Clipboard', {
+        toast('Copied To Clipboard!', {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -30,8 +30,7 @@ function Manager() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "light",
-
+            theme: "dark",
         });
         navigator.clipboard.writeText(text)
     }
@@ -53,6 +52,16 @@ function Manager() {
         setPasswordArray([...passwordArray, { ...form, id: uuidv4() }])
         localStorage.setItem("passwords", JSON.stringify([...passwordArray, { ...form, id: uuidv4() }]))
         setform({ site: "", username: "", password: "" })
+        toast('Password Saved Successfully!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
     }
 
     const deletePassword = (id) => {
@@ -61,11 +70,23 @@ function Manager() {
             console.log("Deleting password with id", id);
             setPasswordArray(passwordArray.filter(item=>item.id!==id))
             localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item=>item.id!==id)))
+
+            toast('Password Deleted!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
     }
     
 
     const editPassword = (id) => {
+        
         console.log("Editing password with id", id);
         setform(passwordArray.filter(i=>i.id===id)[0])
         setPasswordArray(passwordArray.filter(item=>item.id!==id))

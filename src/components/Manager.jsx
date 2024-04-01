@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRef, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -30,8 +31,8 @@ function Manager() {
             draggable: true,
             progress: undefined,
             theme: "light",
-            
-            });
+
+        });
         navigator.clipboard.writeText(text)
     }
 
@@ -49,9 +50,29 @@ function Manager() {
     }
 
     const savePassword = () => {
-        setPasswordArray([...passwordArray, form])
-        localStorage.setItem("passwords", JSON.stringify([...passwordArray, form]))
+        setPasswordArray([...passwordArray, { ...form, id: uuidv4() }])
+        localStorage.setItem("passwords", JSON.stringify([...passwordArray, { ...form, id: uuidv4() }]))
+        setform({ site: "", username: "", password: "" })
     }
+
+    const deletePassword = (id) => {
+        let c= confirm("Do you really want to delete this password?")
+        if(c){
+            console.log("Deleting password with id", id);
+            setPasswordArray(passwordArray.filter(item=>item.id!==id))
+            localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item=>item.id!==id)))
+        }
+    }
+    
+
+    const editPassword = (id) => {
+        console.log("Editing password with id", id);
+        setform(passwordArray.filter(i=>i.id===id)[0])
+        setPasswordArray(passwordArray.filter(item=>item.id!==id))
+
+    }
+
+
     const handleChange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })
     }
@@ -68,7 +89,7 @@ function Manager() {
                 draggable
                 pauseOnHover
                 theme="light"
-                transition= "Bounce" />
+                transition="Bounce" />
             {/* Same as */}
             <ToastContainer />
 
@@ -149,11 +170,14 @@ function Manager() {
                                     </td>
                                     <td className='border justify-center border-white py-1 text-center '>
                                         <div className=' flex items-center justify-center gap-2 '>
-                                            <span>
+
+                                            <span onClick={() => {editPassword( item.id ) }}>
+                                                 <img className=' w-8 cursor-pointer ' src="/icons/edit.gif" alt="" />
+                                            </span>
+                                            
+                                            <span onClick={() => {deletePassword( item.id ) }}>
                                                 <img className=' w-8 cursor-pointer' src="/icons/trash-bin.gif" alt="" />
                                             </span>
-                                               <span> <img className=' w-8 cursor-pointer ' src="/icons/edit.gif" alt="" />
-                                               </span>
                                         </div>
                                     </td>
                                 </tr>

@@ -10,11 +10,6 @@ function Nvabar() {
 
         </div>
         <ul>
-          {/* <li className=' flex gap-4'>
-            <a className=' hover:font-bold' href="/">Home</a>
-            <a className=' hover:font-bold' href="#">About</a>
-            <a className=' hover:font-bold' href="#">Contact</a>
-          </li> */}
 
         </ul>
         <button className=' text-white bg-green-800 my-4 rounded-full flex gap-4 justify-between items-center ring-1 ring-white'>

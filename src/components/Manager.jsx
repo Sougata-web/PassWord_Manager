@@ -119,9 +119,8 @@ function Manager() {
                 pauseOnHover
                 theme="light"
                 transition="Bounce" />
-            {/* Same as */}
+           
             <ToastContainer />
-
             <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#3dd_100%)]"></div>
 
             <div className="p-2 md:p-0 md:mycontainer">

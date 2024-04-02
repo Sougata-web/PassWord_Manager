@@ -12,7 +12,7 @@ function App() {
   return (
     <>
     <Nvabar/>
-    <div className=' min-h-[88vh]'>
+    <div className=' min-h-[88vh]  bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#3dd_100%)]'>
 
     <Manager/>
     </div>
